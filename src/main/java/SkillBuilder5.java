@@ -3,53 +3,50 @@ import java.util.Random;
 public class SkillBuilder5 {
     private static Random rand = new Random(17);
 
-    public static boolean playCraps() {
+    public static boolean playCraps(){
         boolean isWon = false;
-        int diceOne = rand.nextInt(6);
-        int diceTwo = rand.nextInt(6);
-        diceOne += 1;
-        diceTwo += 1;
-        int i = 1;
+        int diceOne = rand.nextInt(6) + 1;
+        int diceTwo = rand.nextInt(6) + 1;
         int roll = diceOne + diceTwo;
 
-        if (i == 1) {
-            if (roll == 7 || roll == 11) {
-                isWon = true;
-            } else if (roll == 2 || roll == 3 || roll == 12) {
-                isWon = false;
+        if (roll == 7 || roll == 11) {
 
-            } else {
-                i++;
+            isWon = true;
+        } else if (roll == 2 || roll == 3 || roll == 12) {
 
-            }
-        } else if (i > 1) {
-            int initialRoll = roll;
+            isWon = false;
+        } else {
+
+            int point = roll;
             boolean isRolling = true;
+
             while (isRolling) {
-                diceOne = rand.nextInt(6);
-                diceOne += 1;
-                diceTwo = rand.nextInt(6);
-                diceTwo += 1;
+                diceOne = rand.nextInt(6) + 1;
+                diceTwo = rand.nextInt(6) + 1;
                 roll = diceOne + diceTwo;
-                if (roll == initialRoll) {
+
+                if (roll == point) {
+
                     isWon = true;
                     isRolling = false;
-
                 } else if (roll == 7 || roll == 11) {
+
                     isWon = false;
                     isRolling = false;
-
-
-                } else {i++;}
-
+                }
 
             }
-
-
         }
-        return isWon;
 
+        return isWon;
     }
+
+
+
+
+
+
+
 
     private static void generateLevel(int level, int[] a){
         // TODO: replace this line with your code.
