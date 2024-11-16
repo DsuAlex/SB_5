@@ -3,22 +3,27 @@ import java.util.Random;
 public class SkillBuilder5 {
     private static Random rand = new Random(17);
 
-    public static boolean playCraps(){
-        boolean isWon = false;
+
+    public static boolean playCraps() {
+
+
+        boolean HasWon = false;
+        boolean isRolling = true;
         int diceOne = rand.nextInt(6) + 1;
         int diceTwo = rand.nextInt(6) + 1;
         int roll = diceOne + diceTwo;
 
         if (roll == 7 || roll == 11) {
+        HasWon = true;
 
-            isWon = true;
         } else if (roll == 2 || roll == 3 || roll == 12) {
+            HasWon = false;
 
-            isWon = false;
         } else {
 
-            int point = roll;
-            boolean isRolling = true;
+            int temp = roll;
+            int point = temp;
+
 
             while (isRolling) {
                 diceOne = rand.nextInt(6) + 1;
@@ -27,19 +32,17 @@ public class SkillBuilder5 {
 
                 if (roll == point) {
 
-                    isWon = true;
+                    HasWon = true;
                     isRolling = false;
-                } else if (roll == 7 || roll == 11) {
+                } else if (roll == 7) {
 
-                    isWon = false;
-                    isRolling = false;
+                        HasWon = false;
+                        isRolling = false;
+                        }
+                    }
                 }
-
+        return HasWon;
             }
-        }
-
-        return isWon;
-    }
 
 
 
@@ -49,14 +52,37 @@ public class SkillBuilder5 {
 
 
     private static void generateLevel(int level, int[] a){
-        // TODO: replace this line with your code.
+        a[0] = 1;
+
+        for (int i = 1; i <= level; i++) {
+            a[i] = a[i - 1] * (level - i + 1) / i;
+        }
     }
 
     private static String generateLevelString(int level, int[] a){
-        return null;
+        String result = "";
+
+
+
+        for (int num : a) {
+            result += String.format("%-5d", num);
+        }
+
+
+        return result.stripTrailing();
+
     }
 
     public static String pascalsTriangle(int numOfRows){
-       return null;
+        String result = "";
+
+        for (int i = 0; i < numOfRows; i++) {
+            int[] row = new int[i + 1];
+            generateLevel(i, row);
+            String rowString = generateLevelString(i, row);
+            result += rowString + "\n";
+        }
+
+        return result;
     }
 }
