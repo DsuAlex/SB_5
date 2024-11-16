@@ -16,7 +16,7 @@ public class SkillBuilder5 {
         if (roll == 7 || roll == 11) {
         HasWon = true;
 
-        } else if (roll == 2 || roll == 3 || roll == 12) {
+        } else if (roll == 2  || roll == 3 || roll == 12 ) {
             HasWon = false;
 
         } else {
