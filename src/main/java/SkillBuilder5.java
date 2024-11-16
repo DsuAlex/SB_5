@@ -59,11 +59,17 @@ public class SkillBuilder5 {
         }
     }
 
-    private static String generateLevelString(int level, int[] a){
+    private static String generateLevelString(int level, int[] a, int totalRows){
         String result = "";
 
 
 
+        int spaces = totalRows - level - 1;
+
+
+        for (int i = 0; i < spaces; i++) {
+            result += "     ";
+        }
         for (int num : a) {
             result += String.format("%-5d", num);
         }
@@ -76,10 +82,11 @@ public class SkillBuilder5 {
     public static String pascalsTriangle(int numOfRows){
         String result = "";
 
+
         for (int i = 0; i < numOfRows; i++) {
             int[] row = new int[i + 1];
             generateLevel(i, row);
-            String rowString = generateLevelString(i, row);
+            String rowString = generateLevelString(i, row, numOfRows);
             result += rowString + "\n";
         }
 
