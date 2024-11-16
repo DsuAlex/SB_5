@@ -16,13 +16,13 @@ public class SkillBuilder5 {
         if (roll == 7 || roll == 11) {
         HasWon = true;
 
-        } else if (roll == 2  || roll == 3 || roll == 12 ) {
+        } else if ( roll == 2 || roll == 3 || roll == 12  ) {
             HasWon = false;
 
         } else {
 
-            int temp = roll;
-            int point = temp;
+
+            int point = roll;
 
 
             while (isRolling) {
@@ -34,7 +34,7 @@ public class SkillBuilder5 {
 
                     HasWon = true;
                     isRolling = false;
-                } else if (roll == 7) {
+                } else if (roll == 7 || roll == 11) {
 
                         HasWon = false;
                         isRolling = false;
