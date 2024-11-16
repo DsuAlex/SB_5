@@ -7,42 +7,20 @@ public class SkillBuilder5 {
     public static boolean playCraps() {
 
 
-        boolean HasWon = false;
-        boolean isRolling = true;
-        int diceOne = rand.nextInt(6) + 1;
-        int diceTwo = rand.nextInt(6) + 1;
-        int roll = diceOne + diceTwo;
+        int firstRoll = rollDice(); if (firstRoll == 7 || firstRoll == 11) { return true; }
 
-        if (roll == 7 || roll == 11) {
-        HasWon = true;
+        else if (firstRoll == 2 || firstRoll == 3 || firstRoll == 12) { return false;  }
 
-        } else if ( roll == 2 || roll == 3 || roll == 12  ) {
-            HasWon = false;
-
-        } else {
+        int point = firstRoll;
+        while (true) { int roll = rollDice(); if (roll == point) { return true;  }
+        else if (roll == 7 || roll == 11) { return false;}}
+    }
+    private static int rollDice() { return rand.nextInt(12)+1; }
 
 
-            int point = roll;
 
 
-            while (isRolling) {
-                diceOne = rand.nextInt(6) + 1;
-                diceTwo = rand.nextInt(6) + 1;
-                roll = diceOne + diceTwo;
-
-                if (roll == point) {
-
-                    HasWon = true;
-                    isRolling = false;
-                } else if (roll == 7 || roll == 11) {
-
-                        HasWon = false;
-                        isRolling = false;
-                        }
-                    }
-                }
-        return HasWon;
-            }
+    }
 
 
 
@@ -52,12 +30,12 @@ public class SkillBuilder5 {
 
 
     private static void generateLevel(int level, int[] a){
-        a[0] = 1;
-
-        for (int i = 1; i <= level; i++) {
-            a[i] = a[i - 1] * (level - i + 1) / i;
-        }
+    a[0] = 1;
+    for (int i = level; i > 0; i--) {
+        a[i] = a[i] + a[i - 1];
     }
+}
+
 
     private static String generateLevelString(int level, int[] a, int totalRows){
         String result = "";
